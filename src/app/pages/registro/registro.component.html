@@ -1,0 +1,168 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <main>
+    <div class="row-center text-center">
+      <p class="text-muted" *ngIf="!muestra">Elige como quieres registrarte, Alumno o Profesor.</p>
+                    
+          <button mat-stroked-button color="primary" (click)="Mostrar('volver')" *ngIf="muestra">Cambiar elección</button>
+          <button mat-stroked-button color="accent" (click)="Mostrar('admin')" *ngIf="!muestra && role=='admin'"><mat-icon matSuffix>verified_user</mat-icon>Crear Usuario ADMIN</button>
+          <mat-grid-list cols="2" rowHeight="1.5:1" *ngIf="!muestra">
+            <mat-grid-tile><button class="botonFoto" (click)="Mostrar('alumno')" ><img src="../../../assets/Imagenes/Alumno.gif" alt=""></button></mat-grid-tile>
+            <mat-grid-tile><button class="botonFoto" (click)="Mostrar('profesor')" ><img src="../../../assets/Imagenes/Profesor.gif" alt=""></button></mat-grid-tile>
+          </mat-grid-list>
+
+        <div *ngIf="muestra">
+          <div class="text-center">
+            <p class="text-muted">(Todos los campos son obligatorios)</p>
+          </div>
+            <form class="needs-validation" [formGroup]="forma" (ngSubmit)="NuevoRegistro()">
+
+                    <div class="row g-3">
+                      <div class="col-sm-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Nombre</mat-label>
+                          <input matInput placeholder="Nombre" formControlName="nombre">
+                          <mat-icon matSuffix>person</mat-icon>
+                          <mat-error class="invalid" *ngIf="forma.get('nombre').errors?.required && forma.get('nombre').touched">El nombre es requerido</mat-error>
+                        </mat-form-field>
+                      </div>
+                  
+                      <div class="col-sm-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Apellido</mat-label>
+                          <input matInput placeholder="Apellido" formControlName="apellido">
+                          <mat-icon matSuffix>person</mat-icon>
+                          <mat-error class="invalid" *ngIf="forma.get('apellido').errors?.required && forma.get('apellido').touched">El apellido es requerido</mat-error>
+                        </mat-form-field>                    
+                      </div>
+
+                      <!-- <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Edad</mat-label>
+                          <input type="number" matInput placeholder="0" formControlName="edad">
+                          <mat-icon matSuffix>cake</mat-icon>
+                          <mat-error class="invalid" *ngIf="forma.get('edad').errors?.required && forma.get('edad').touched">La edad es requerida</mat-error>
+                          <mat-error class="invalid" *ngIf="forma.get('edad').errors?.min || forma.get('edad').errors?.max && forma.get('edad').touched">Debe ser entre 16 y 99</mat-error>
+                        </mat-form-field>                    
+                      </div>
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>DNI</mat-label>
+                          <input type="number" matInput placeholder="DNI" formControlName="dni">
+                          <mat-icon matSuffix>perm_identity</mat-icon>
+                          <mat-error class="invalid" *ngIf="forma.get('dni').errors?.required && forma.get('dni').touched">El DNI es requerido</mat-error>
+                          <mat-error class="invalid" *ngIf="forma.get('dni').errors?.max && forma.get('dni').touched">El dni debe ser de 8 digitos maximo</mat-error>
+                        </mat-form-field>                    
+                      </div> -->
+                    </div>
+       
+
+                    <div class="row g-3">
+                      <div class="col-sm-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Email</mat-label>
+                          <input matInput placeholder="example@example.com" formControlName="email">
+                          <mat-icon matSuffix>email</mat-icon>
+                          <mat-error class="invalid" *ngIf="forma.get('email').errors?.required && forma.get('email').touched">El email es requerido</mat-error>
+                          <mat-error class="invalid" *ngIf="forma.get('email').errors?.email && forma.get('email').touched">No posee formato de Email</mat-error>
+                        </mat-form-field>                    
+                      </div>
+<!-- 
+                      <div class="col-sm-6" *ngIf="alumno">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Obra Social</mat-label>
+                          <input matInput placeholder="Obra Social" formControlName="OS">
+                          <mat-icon matSuffix>local_hospital</mat-icon>
+                          <mat-error class="invalid" *ngIf="forma.get('OS').errors?.required && forma.get('OS').touched">La Obra Social es requerida</mat-error>
+                        </mat-form-field>                    
+                      </div> -->
+                  
+                      <div class="col-sm-6 ">
+                        <mat-label>Imagen de perfil</mat-label>
+                        <br>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="imgPerfil" lang="es" formControlName="imgPerfil" (change)="handleImgPerfil($event)">
+                          <label class="custom-file-label" for="imgPerfil">Seleccionar Archivo</label>
+                        </div>                        
+                        <mat-error class="invalid" *ngIf="forma.get('imgPerfil').errors?.required && forma.get('imgPerfil').touched">La imagen de perfil es requerida</mat-error>                              
+                      </div>
+
+                      <!-- <div class="col-sm-6" *ngIf="alumno">
+                        <mat-label>Imagen de frente</mat-label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="imgFrente" lang="es" formControlName="imgFrente" (change)="handleImgFrente($event)">
+                          <label class="custom-file-label" for="imgFrente">Seleccionar Archivo</label>
+                        </div>                          
+                        <mat-error class="invalid" *ngIf="forma.get('imgFrente').errors?.required && forma.get('imgFrente').touched">La imagen de frente es requerida</mat-error>                        
+                      </div>                      -->
+                    </div>
+
+                    <div class="row g-3">
+                      <div class="col-sm-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Contraseña</mat-label>
+                          <input type="password" matInput placeholder="6 caracteres minimos" formControlName="password">
+                          <mat-icon matSuffix>lock</mat-icon>
+                          <mat-error class="invalid" *ngIf="forma.get('password').errors?.required && forma.get('password').touched">La contraseña es requerida</mat-error>
+                          <mat-error class="invalid" *ngIf="forma.get('password').errors?.minLength && forma.get('password').touched">La contraseña es requerida</mat-error>
+                        </mat-form-field>                    
+                      </div>
+                      <div class="col-sm-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Repetir Contraseña</mat-label>
+                          <input type="password" matInput placeholder="6 caracteres minimos" formControlName="password2">
+                          <mat-icon matSuffix>lock</mat-icon>
+                          <mat-error class="invalid" *ngIf="forma.get('password2').errors?.required && forma.get('password2').touched">La contraseña es requerida</mat-error>
+                          <mat-error class="invalid" *ngIf="forma.get('password2').errors?.minLength && forma.get('password2').touched">La contraseña es requerida</mat-error>
+                        </mat-form-field>                    
+                      </div>
+                    </div>              
+
+                    <!-- <div class="row g-3" *ngIf="profesor">                     
+
+                      <div class="col-sm-6" >
+                        <mat-form-field appearance="outline">
+                          <mat-label>Especialidad</mat-label>
+                          <mat-select id="especialidad" formControlName="especialidad" multiple>
+                            <mat-option *ngFor="let especialidad of listaEspecialidades" [value]="especialidad">{{especialidad.nombre}}</mat-option>
+                          </mat-select>
+                          <mat-error class="invalid" *ngIf="forma.get('especialidad').errors?.required && forma.get('especialidad').touched">La especialidad es requerida</mat-error>
+                        </mat-form-field>                        
+                      </div>
+
+                      <div class="col-sm-6" >
+                        <mat-form-field appearance="outline">
+                          <mat-label>Especialidad nueva (opcional) </mat-label>
+                          <input matInput placeholder="Especialidad nueva" formControlName="especialidadNueva">
+                          <mat-icon matSuffix>local_hospital</mat-icon>
+                        </mat-form-field>
+                      </div>
+
+                    </div> -->
+                    <br>
+                    
+                    <!-- <div class="row g-3">
+                      <div class="col-sm-4" ></div>
+                      <div class="col-sm-4" >
+                      <ngx-recaptcha2 [siteKey]="siteKey" formControlName="reRaptcha">
+                      
+                      </ngx-recaptcha2>
+                    </div>
+                    <div class="col-sm-4" ></div>
+                    </div> -->
+
+                <hr class="my-4">
+               
+                <button mat-raised-button color="accent" class="w-100" type="submit" [disabled]="forma.invalid">Registrarse</button>
+                
+                <div class="text-center">
+                  <small class="invalid" *ngIf="errorIngreso">Las contraseñas no coinciden</small>
+                </div>
+               
+            </form>
+        </div>
+    </div>
+  </main>
+</div>
+

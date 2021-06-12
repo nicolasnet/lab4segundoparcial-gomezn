@@ -1,0 +1,42 @@
+<header class="p-3 text-white"> 
+    <!-- fixed-top  -->
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" >
+            <li>
+              <button mat-icon-button (click)="Navegar('')" >
+                <mat-icon>home</mat-icon>
+              </button>
+            </li>
+                      
+            <li><a href="/secciones/usuarios" class="nav-link px-2 texto" *ngIf="role=='admin'">Usuarios</a></li>
+
+            <li><a href="/secciones/crearmateria" class="nav-link px-2 texto" *ngIf="role=='admin'">Crear Materia</a></li>
+  
+            <!-- <li><a href="/secciones/pedirturno" class="nav-link px-2 texto" *ngIf="role=='paciente'">Pedir turno</a></li> -->
+  
+            <!-- <li><a href="/secciones/misturnos" class="nav-link px-2 texto" *ngIf="role=='paciente'&& role ">Mis turnos</a></li> -->
+  
+            <!-- <li><a href="/secciones/misturnosespecialistas" class="nav-link px-2 texto" *ngIf="role =='especialista'&& role ">Mis turnos</a></li> -->
+  
+          </ul>
+          <!--
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+            <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+          </form>
+          -->
+  
+          <div class="text-end">
+            <div *ngIf="user$ | async as user; else login">           
+              <button type="button" mat-stroked-button color="warn" (click)="Desconectarse()" *ngIf="user">Desconectarse</button>            
+                <a href="/secciones/miperfil" style="color: whitesmoke;"> {{ user?.email }} </a>
+            </div>
+  
+            <ng-template #login>
+              <button type="button" class="btn btn-outline-light me-2" (click)="Navegar('login')">Acceder</button>
+              <button type="button" class="btn btn-dark" (click)="Navegar('registro')">Registro</button>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+  </header>

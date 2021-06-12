@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+
+<body class="text-center" >    
+  <main class="form-signin" >
+    <form>
+      <img src="../../../../assets/Imagenes/person.png">
+      <h1 class="h3 mb-3 fw-normal">Ingrese sus datos</h1>
+
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value={{emailIngreso}} #email>
+        <label for="floatingInput">Email</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" value={{contraIngreso}} #password>
+        <label for="floatingPassword">Contraseña</label>
+      </div>
+
+      <button mat-raised-button color="primary" (click)="OnSignIn(email.value, password.value)" class="w-100"><mat-icon>input</mat-icon> Ingresar </button>
+      <br><br><br>
+      <div class="textInvalid" *ngIf="mostrarError">
+        
+        Por favor verificar los datos.
+      </div>
+    </form>
+<!-- 
+    <div class="botonesOcultos" *ngIf="mostrar">
+      <button mat-mini-fab color="primary" (click)="CompletaIngreso('paciente1')">
+        <mat-icon>person</mat-icon>1
+      </button>
+      <button mat-mini-fab color="primary" (click)="CompletaIngreso('paciente2')">
+        <mat-icon>person</mat-icon>2
+      </button>
+      <br>
+      <button mat-mini-fab color="accent" (click)="CompletaIngreso('especialista1')">
+        <mat-icon>local_hospital</mat-icon>1
+      </button>
+      <button mat-mini-fab color="accent" (click)="CompletaIngreso('especialista2')">
+        <mat-icon>local_hospital</mat-icon>2
+      </button>
+      <br>
+      <button mat-mini-fab color="" (click)="CompletaIngreso('adm1')">
+        adm 1
+      </button>
+      <button mat-mini-fab color="" (click)="CompletaIngreso('adm2')">
+        adm 2
+      </button>
+    </div>     
+-->
+  </main>
+  <!-- <div class="botonMostrar" >
+    <button mat-mini-fab color="warn" (click)="Mostrar()" *ngIf="!mostrar">
+      <mat-icon>lock</mat-icon>
+    </button>
+    <button mat-mini-fab color="warn" (click)="Mostrar()" *ngIf="mostrar">
+      <mat-icon>lock_open</mat-icon>
+    </button>
+    <br>
+    <label class="text-muted">Login</label>
+  </div> --> 
+
+  
+  
+</body>

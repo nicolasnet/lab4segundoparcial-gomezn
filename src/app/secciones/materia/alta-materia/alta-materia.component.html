@@ -1,0 +1,47 @@
+<div class="container">
+    <form class="needs-validation" novalidate [formGroup]="forma" (ngSubmit)="nuevaMateria()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre" formControlName="nombre">
+          <small class="invalid" *ngIf="forma.get('nombre').errors?.required && forma.get('nombre').touched">El nombre es requerido</small>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="cuatrimestre" class="form-label">Cuatrimestre</label>
+            <input type="number" max="99999999" class="form-control" id="cuatrimestre" placeholder="1 o 2" value="" formControlName="cuatrimestre">
+            <small class="invalid" *ngIf="forma.get('cuatrimestre').errors?.required && forma.get('cuatrimestre').touched">El cuatrimestre es requerido</small>
+            <small class="invalid" *ngIf="forma.get('cuatrimestre').errors?.max && forma.get('cuatrimestre').touched">El cuatrimestre debe ser 1 o 2</small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-1">
+            <label for="year" class="form-label">Año</label>
+            <input type="number" class="form-control" id="year" placeholder="0" value="" formControlName="year">
+            <small class="invalid" *ngIf="forma.get('year').errors?.required && forma.get('year').touched">El año es requerido</small>
+            <small class="invalid" *ngIf="forma.get('year').errors?.min || forma.get('year').errors?.max && forma.get('year').touched">El año debe ser entre 2000 y 3000</small>
+        </div>
+        <div class="col-md-6 mb-2">
+            <label for="capacidad" class="form-label">Cupo de alumnos</label>
+            <input type="number" max="99999999" class="form-control" id="capacidad" placeholder="0" value="" formControlName="capacidad">
+            <small class="invalid" *ngIf="forma.get('capacidad').errors?.required && forma.get('capacidad').touched">El cupo es requerido</small>
+        </div>
+        
+    </div>
+   
+        
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="profesor">Profesor</label>
+          <input type="text" *ngIf="profesorParaMostrar" class="form-control" id="profesor" value="{{profesorParaMostrar.apellido}} {{profesorParaMostrar.nombre}}" disabled>
+          <input type="text" *ngIf="!profesorParaMostrar" class="form-control" placeholder="Seleccionar profesor del listado" disabled>
+          
+        </div>
+    
+    
+      </div>
+    
+    
+      <hr class="mb-4">
+      <button mat-raised-button color="primary" type="submit" [disabled]="forma.invalid" style="width: 100%;">Dar el alta</button>
+    </form>
+    </div>

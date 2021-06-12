@@ -1,0 +1,88 @@
+<app-navbar></app-navbar>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.83.1">
+    <title>Checkout example · Bootstrap v5.0</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
+
+    
+
+    
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+<link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#7952b3">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+</head>
+  <body class="bg-light">
+    
+    <div class="container">
+    <main>
+        <div class="py-5 text-center">
+        
+        <h2>Alta nueva Materia</h2>
+        
+        </div>
+
+        <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+                <!-- <app-listado-paises (eventPaisSeleccionado)="CargarPaisSeleccionado($event)"></app-listado-paises> -->
+                <app-listado-profesores (eventProfesorSeleccionado)="CargarProfesorSeleccionado($event)"></app-listado-profesores>
+        </div>
+
+
+
+        <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">Datos Materia</h4>
+           
+            <!-- <app-alta-repartidor [paisParaMostrar]="paisSeleccionado"></app-alta-repartidor> -->
+            <app-alta-materia [profesorParaMostrar]="profesorSeleccionado"></app-alta-materia>
+
+        </div>
+        </div>
+    </main>
+
+    <!-- <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">© 2017–2021 Company Name</p>
+        <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer> -->
+    </div>
+
+
+    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
+      <script src="form-validation.js"></script>
+  
+
+<div id="shimai-world" style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 2147483647; pointer-events: none; background: transparent;"></div></body></html>

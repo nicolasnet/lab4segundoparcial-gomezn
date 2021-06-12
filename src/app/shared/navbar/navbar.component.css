@@ -1,0 +1,14 @@
+header{
+    background-color: darkcyan;
+ }
+
+.texto{
+    color: whitesmoke;
+}
+.texto:hover{
+ color: palevioletred;
+}
+button:hover{
+    color: palevioletred;
+}
+

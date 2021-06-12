@@ -1,0 +1,14 @@
+<h4 class="d-flex justify-content-between align-items-center mb-3">
+    <span class="text-muted">Profesores</span>
+    <span class="badge badge-secondary badge-pill">{{cantidadProfesores}}</span>
+</h4>
+
+    <ul class="list-group mb-3 card-body overflow-auto" style="height: 200px;" #scrollMe  [scrollTop]="scrollMe">
+        <li type="button" class="list-group-item d-flex justify-content-between lh-condensed elegido" *ngFor="let profe of listadoProfesores" (click)="seleccionProfesor(profe)">
+            <div >
+                <h6 class="my-0">{{profe.apellido}}</h6>
+                <small class="text-muted">{{profe.nombre}}</small>
+            </div>
+            <img src="{{profe.imgPerfil}}" class="imgPerfil" >
+        </li>
+    </ul>
