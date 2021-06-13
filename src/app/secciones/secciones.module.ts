@@ -7,6 +7,12 @@ import { SharedModule } from '../shared/shared.module';
 import { PageCrearMateriaComponent } from './materia/page-crear-materia/page-crear-materia.component';
 import { ListadoProfesoresComponent } from './listado-profesores/listado-profesores.component';
 import { AltaMateriaComponent } from './materia/alta-materia/alta-materia.component';
+import { PageInscripcionMateriaComponent } from './inscripcion/page-inscripcion-materia/page-inscripcion-materia.component';
+import { ListadoAlumnosComponent } from './inscripcion/listado-alumnos/listado-alumnos.component';
+import { ListadoMateriasComponent } from './inscripcion/listado-materias/listado-materias.component';
+
+import { CambioTipoUserPipe } from '../pipes/cambio-tipo-user.pipe';
+import { MateriaDetalleComponent } from './materia/materia-detalle/materia-detalle.component';
 
 
 @NgModule({
@@ -14,7 +20,12 @@ import { AltaMateriaComponent } from './materia/alta-materia/alta-materia.compon
     UsuariosComponent,
     PageCrearMateriaComponent,
     ListadoProfesoresComponent,
-    AltaMateriaComponent
+    AltaMateriaComponent,
+    PageInscripcionMateriaComponent,
+    ListadoAlumnosComponent,
+    ListadoMateriasComponent,
+    CambioTipoUserPipe,
+    MateriaDetalleComponent
   ],
   imports: [
     CommonModule,

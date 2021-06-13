@@ -26,6 +26,7 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import { SharedRoutingModule } from './shared-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 
+
 const materialFormModule =[
   MatCardModule,
   MatButtonModule,
@@ -52,12 +53,10 @@ const materialFormModule =[
   
 ]
 
+
 @NgModule({
   declarations: [
     // LoadingComponent,
-    NavbarComponent,
-    // TurnosDatePipe
-  
     NavbarComponent
   ],
   imports: [

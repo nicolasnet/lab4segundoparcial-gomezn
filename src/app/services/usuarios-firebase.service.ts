@@ -16,17 +16,26 @@ export class UsuariosFirebaseService {
   usuarioSeleccionado: any;
   profesoresRef: AngularFirestoreCollection<any>;
   profesores: Observable<User[]>;
+  alumnosRef: AngularFirestoreCollection<any>;
+  alumnos: Observable<User[]>;
 
   constructor(private db: AngularFirestore) {
-    this.usuariosRef=db.collection<any>(this.dbpath, ref => ref.where('role', '==', "profesor").orderBy('apellido'));
-    this.usuarios=this.usuariosRef.valueChanges(this.dbpath);
+    this.profesoresRef=db.collection<any>(this.dbpath, ref => ref.where('role', '==', "profesor").orderBy('apellido'));
+    this.profesores=this.profesoresRef.valueChanges(this.dbpath);
 
-    this.profesoresRef=db.collection<any>(this.dbpath, ref => ref.orderBy('apellido'));
-    this.profesores=this.usuariosRef.valueChanges(this.dbpath);
+    this.alumnosRef=db.collection<any>(this.dbpath, ref => ref.where('role', '==', "alumno").orderBy('apellido'));
+    this.alumnos=this.alumnosRef.valueChanges(this.dbpath);
+
+    this.usuariosRef=db.collection<any>(this.dbpath, ref => ref.orderBy('apellido'));
+    this.usuarios=this.usuariosRef.valueChanges(this.dbpath);
   }
 
   getAllProfesores(){
     return this.profesores
+  }
+
+  getAllAlumnos(){
+    return this.alumnos
   }
 
   async obtenerID(email: string){

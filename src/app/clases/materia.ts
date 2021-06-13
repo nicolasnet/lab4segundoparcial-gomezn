@@ -6,4 +6,9 @@ export class Materia {
     cupoAlumnos: number;
     year: number;
     profesor?: User;
+    listadoAlumnos: Array<User>;
+
+    constructor(){
+        this.listadoAlumnos = new Array<User>();
+    }
 }

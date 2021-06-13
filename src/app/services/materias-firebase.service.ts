@@ -11,8 +11,8 @@ export class MateriasFirebaseService {
   private dbpath = '/materias'; //ruta de la coleccion de firebase.
   mensajesRef: AngularFirestoreCollection<Materia>;
   mensajes:Observable<any[]>;
-  MateriaSeleccionado: unknown;
-  idMateriaSeleccionado: string;
+  MateriaSeleccionada: unknown;
+  idMateriaSeleccionada: string;
   listadoMateriasDisponibles;
   listadoMateriasDisponiblesRef;
 
@@ -20,10 +20,28 @@ export class MateriasFirebaseService {
     this.listadoMateriasDisponiblesRef=db.collection<any>(this.dbpath, ref => ref.where('estado', '==', "disponible").orderBy('dia'));
     this.listadoMateriasDisponibles=this.listadoMateriasDisponiblesRef.valueChanges(this.dbpath);
 
-    this.mensajesRef=db.collection<any>(this.dbpath, ref => ref.orderBy('dia'));
+    this.mensajesRef=db.collection<any>(this.dbpath, ref => ref.orderBy('nombre'));
     this.mensajes=this.mensajesRef.valueChanges(this.dbpath);
 
   }
+
+
+  async obtenerID(nombre: string){
+    await this.db.collection(this.dbpath).ref.where('nombre', '==', nombre).get().then((responce)=>{
+      this.idMateriaSeleccionada = responce.docs[0].id;
+      
+    });
+  }
+
+
+  async obtenerMateriaPorNombre(nombre: string){
+    await this.db.collection(this.dbpath).ref.where('nombre', '==', nombre).get().then((responce)=>{
+      console.log("entra en obtenerMaterias de los especialistas")
+      this.MateriaSeleccionada = responce.docs;
+    });
+  }
+
+
 
   obtenerMateriasDisponibles(){
     return this.listadoMateriasDisponibles;
@@ -32,41 +50,6 @@ export class MateriasFirebaseService {
   getAll(){
     return this.mensajes;
   }
-
-  async obtenerMateriasPaciente(email: string){
-    await this.db.collection(this.dbpath).ref.where('paciente.email', '==', email).get().then((responce)=>{
-      console.log("entra en obtenerMateriasPaciente")
-      this.MateriaSeleccionado = responce.docs;
-    });
-  }
-
-
-
-  async obtenerMateriasEspecialistas(email: string){
-    await this.db.collection(this.dbpath).ref.where('medico.email', '==', email).get().then((responce)=>{
-      console.log("entra en obtenerMaterias de los especialistas")
-      this.MateriaSeleccionado = responce.docs;
-    });
-  }
-
-
-
-  async obtenerMateriaPorId (id: string){
-    await this.db.collection(this.dbpath).ref.where('id', '==', id).get().then((responce)=>{
-      this.MateriaSeleccionado = responce.docs[0].data();
-      this.idMateriaSeleccionado = responce.docs[0].id;
-
-      // console.log(responce.docs[0].data());
-    });
-  }
-
-  async obtenerMateriaPorEspecialidad (especialidad: string){
-    await this.db.collection(this.dbpath).ref.where('especialidad', '==', especialidad).get().then((responce)=>{
-      this.MateriaSeleccionado = responce.docs[0].data();
-    });
-  }
- 
-
 
 
   create(mensaje: Materia): any{

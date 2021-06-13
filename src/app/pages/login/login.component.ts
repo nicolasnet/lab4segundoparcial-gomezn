@@ -85,19 +85,19 @@ export class LoginComponent implements OnInit {
   CompletaIngreso(ingreso: string){
     switch(ingreso){
       case "adm1":
-        this.emailIngreso= "nicogomez27@gmail.com";
-        this.contraIngreso = "123456";
-        break;
-      case "adm2":
         this.emailIngreso= "niconetgomez@hotmail.com";
         this.contraIngreso = "123456";
         break;
+      case "adm2":
+        this.emailIngreso= "nicogomez27@gmail.com";
+        this.contraIngreso = "123456";        
+        break;
       case "paciente1":
-        this.emailIngreso= "federicomgomez1@gmail.com";
+        this.emailIngreso= "alumno@gmail.com";
         this.contraIngreso = "123456";
         break;
       case "paciente2":
-        this.emailIngreso= "chewy275@gmail.com";
+        this.emailIngreso= "123@123.com";
         this.contraIngreso = "123456";
         break;
       case "especialista1":
@@ -105,7 +105,7 @@ export class LoginComponent implements OnInit {
         this.contraIngreso = "123456";
         break;
       case "especialista2":
-        this.emailIngreso= "santiago.ezequiel.gomez@gmail.com";
+        this.emailIngreso= "profe1@prueba.com";
         this.contraIngreso = "123456";
         break;
     }

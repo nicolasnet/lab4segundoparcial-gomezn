@@ -1,0 +1,9 @@
+.elegido:hover{
+    color: whitesmoke;
+    background-color:rgba(173, 4, 4, 0.514);
+}
+
+.activo{
+    background-color: rgba(139, 0, 0, 0.548);
+    color: whitesmoke;
+}

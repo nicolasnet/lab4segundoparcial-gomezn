@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PageCrearMateriaComponent implements OnInit {
   
   profesorSeleccionado: object;
+  public role: string = localStorage.getItem('role');
 
   constructor() { }
 

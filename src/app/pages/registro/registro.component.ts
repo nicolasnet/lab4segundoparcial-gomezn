@@ -151,7 +151,7 @@ export class RegistroComponent implements OnInit {
     usuarioNuevo.email = this.forma.get('email').value.toLowerCase();
     // usuarioNuevo.edad = this.forma.get('edad').value;
     // usuarioNuevo.dni = this.forma.get('dni').value;
-    // usuarioNuevo.imgPerfil = this.forma.get('imgPerfil').value; con la funcion subir archivo esto no es necesario
+    usuarioNuevo.imgPerfil = this.forma.get('imgPerfil').value;
     if(this.alumno){
       usuarioNuevo.role = "alumno";
     }else if(this.profesor){      
