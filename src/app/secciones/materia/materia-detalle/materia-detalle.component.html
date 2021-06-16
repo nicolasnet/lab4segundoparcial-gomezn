@@ -1,3 +1,37 @@
-<div *ngIf="materiaParaAsignar">
-    {{materiaParaAsignar.nombre}}
-</div>
+
+    <div *ngIf="materiaParaAsignar && mostrar">
+        <img [src]="materiaParaAsignar.imagen" alt="">
+        <h6 class="my-0">{{materiaParaAsignar.nombre}}</h6>
+        <h6>Profesor/a: {{materiaParaAsignar.profesor.apellido}}  {{materiaParaAsignar.profesor.nombre}}</h6>
+        <small class="text-muted">Año: {{materiaParaAsignar.year}}</small><small class="text-muted">  Cuatrimestre: {{materiaParaAsignar.cuatrimestre}}</small><small class="text-muted">  Cupo Restante: {{cupoRestante}}</small>
+        <br>
+        <button *ngIf="role == 'alumno'" mat-stroked-button color="primary" (click)="ConfirmarInscripcion()">Confirmar Inscripcion</button>
+        <div *ngIf="materiaParaAsignar.listadoAlumnos && role == 'profesor'">
+            Alumnos Anotados:
+            <ul class="list-group mb-3 card-body overflow-auto" style="height: 300px;" #scrollMe  [scrollTop]="scrollMe">
+                <li type="button" class="list-group-item d-flex justify-content-between lh-condensed elegido" *ngFor="let alumno of materiaParaAsignar.listadoAlumnos" (click)="SeleccionarAlumno(alumno)">
+                    <div >
+                        <h6 class="my-0">Apellido: {{alumno.apellido}}</h6>
+                        <small class="text-muted">Nombre: {{alumno.nombre}}</small>
+                    </div>
+                    <img src="{{alumno.imgPerfil}}" class="imgPerfil">
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div *ngIf="cupoAlcanzado" style="color: red;">
+        Cupo alcanzado. La materia no acepta mas alumnos.
+    </div>
+
+    <div *ngIf="!mostrar && !inscripto" style="color: rgb(22, 224, 130);">
+        Inscripcion confirmada
+    </div>
+    <div *ngIf="inscripto" style="color: red;">
+        Ya estas anotado en esta materia.
+    </div>
+
+
+
+
+

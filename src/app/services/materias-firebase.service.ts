@@ -26,8 +26,8 @@ export class MateriasFirebaseService {
   }
 
 
-  async obtenerID(nombre: string){
-    await this.db.collection(this.dbpath).ref.where('nombre', '==', nombre).get().then((responce)=>{
+  async obtenerID(idUnico: string){
+    await this.db.collection(this.dbpath).ref.where('id', '==', idUnico).get().then((responce)=>{
       this.idMateriaSeleccionada = responce.docs[0].id;
       
     });

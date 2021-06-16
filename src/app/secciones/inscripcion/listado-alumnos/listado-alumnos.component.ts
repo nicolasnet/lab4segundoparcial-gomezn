@@ -15,6 +15,8 @@ export class ListadoAlumnosComponent implements OnInit {
   listadoAlumnos:any;
   cantidadAlumnos: number;
   cupoAlcanzado: boolean = false;
+  mostrar : boolean = true;
+  inscripto : boolean = false;
 
   constructor(private usuariosServ: UsuariosFirebaseService, private materiasServ: MateriasFirebaseService) {
     this.usuariosServ.getAllAlumnos().subscribe(resultado => {
@@ -31,11 +33,25 @@ export class ListadoAlumnosComponent implements OnInit {
 
 
   async asignarAlumno(alumno: User){
+    this.cupoAlcanzado = false;
+    this.mostrar = true;
+    this.inscripto = false;
+    await this.materiasServ.obtenerID(this.materiaParaAsignar.id);
     if(this.materiaParaAsignar.listadoAlumnos){
       if(this.materiaParaAsignar.listadoAlumnos.length < this.materiaParaAsignar.cupoAlumnos){
-        this.materiaParaAsignar.listadoAlumnos.push(alumno);
-        await this.materiasServ.obtenerID(this.materiaParaAsignar.nombre)
-        this.materiasServ.update(this.materiasServ.idMateriaSeleccionada, {listadoAlumnos: this.materiaParaAsignar.listadoAlumnos})
+        for (let index = 0; index < this.materiaParaAsignar.listadoAlumnos.length; index++) {
+          if(this.materiaParaAsignar.listadoAlumnos[index].email == alumno.email){
+            this.inscripto = true;
+            break;
+          }                  
+        }
+        if(!this.inscripto){
+          this.materiaParaAsignar.listadoAlumnos.push(alumno);        
+          this.materiasServ.update(this.materiasServ.idMateriaSeleccionada, {listadoAlumnos: this.materiaParaAsignar.listadoAlumnos});
+          this.mostrar = false;  
+        }
+        
+        
       }else{
         this.cupoAlcanzado = true;
       }
@@ -43,8 +59,9 @@ export class ListadoAlumnosComponent implements OnInit {
     }else{
       this.materiaParaAsignar.listadoAlumnos = new Array<User>();
       this.materiaParaAsignar.listadoAlumnos.push(alumno);
-      await this.materiasServ.obtenerID(this.materiaParaAsignar.nombre)
+    
       this.materiasServ.update(this.materiasServ.idMateriaSeleccionada, {listadoAlumnos: this.materiaParaAsignar.listadoAlumnos})
+      this.mostrar = false;
     }
         
   }

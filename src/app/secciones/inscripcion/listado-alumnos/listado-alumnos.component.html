@@ -1,4 +1,4 @@
-<div *ngIf="materiaParaAsignar">
+<div *ngIf="materiaParaAsignar && mostrar">
     <h4 class="d-flex justify-content-between  align-items-center mb-3">
         <span class="text-muted">Alumnos:  </span>
         <small class="text-muted" >{{cantidadAlumnos}}</small>
@@ -15,5 +15,11 @@
     </ul>
     <div *ngIf=cupoAlcanzado style="color: red;">
         Cupo de la materia LLENO!
+    </div>
+    <div *ngIf="!mostrar && !inscripto" style="color: rgb(22, 224, 130);">
+        Inscripcion confirmada
+    </div>
+    <div *ngIf="inscripto" style="color: red;">
+        Este alumno ya esta anotado en esta materia.
     </div>
 </div>

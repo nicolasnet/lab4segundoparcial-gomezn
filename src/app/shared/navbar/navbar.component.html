@@ -13,7 +13,11 @@
 
             <li><a href="/secciones/crearmateria" class="nav-link px-2 texto" *ngIf="role=='admin'">Crear Materia</a></li>
 
-            <li><a href="/secciones/inscripcionmateria" class="nav-link px-2 texto" *ngIf="role!='profesor'">Inscripcion Materia</a></li>
+            <li><a href="/secciones/inscripcionmateria" class="nav-link px-2 texto" *ngIf="role && role!='profesor'">Inscripcion Materia</a></li>
+
+            <li><a href="/secciones/mismaterias" class="nav-link px-2 texto" *ngIf="role =='alumno'">Mis Materias</a></li>
+
+            <li><a href="/secciones/materiasprofe" class="nav-link px-2 texto" *ngIf="role =='profesor'">Mis Materias</a></li>
   
             <!-- <li><a href="/secciones/pedirturno" class="nav-link px-2 texto" *ngIf="role=='paciente'">Pedir turno</a></li> -->
   

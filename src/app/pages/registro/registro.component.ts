@@ -27,8 +27,8 @@ export class RegistroComponent implements OnInit {
   imgPerfilURL: any;
 
   constructor(private fb: FormBuilder,
-    public firebaseService: AuthFirebaseService,
     private router: Router,
+    public firebaseService: AuthFirebaseService,
     private usuarioService: UsuariosFirebaseService,
     private firebaseStorage: FileFirestoreService) {
       // this.siteKey = '6LdvifwaAAAAAD3uKrRZK3ZzTbAkGezZLRrI7yZk';  ESTO ES PARA RECAPTCHA

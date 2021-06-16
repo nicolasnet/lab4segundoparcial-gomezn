@@ -30,6 +30,13 @@
    
         
       <div class="row">
+
+        <div class="col-md-6 mb-2">
+          <label for="img" class="form-label">Imagen Materia</label>
+          <input type="file" class="form-control" id="img" value="" formControlName="img" (change)="handleImgagen($event)">
+          <small class="invalid" *ngIf="forma.get('img').errors?.required && forma.get('img').touched">La imagen es requerida</small>
+      </div>
+
         <div class="col-md-6 mb-3">
           <label for="profesor">Profesor</label>
           <input type="text" *ngIf="profesorParaMostrar" class="form-control" id="profesor" value="{{profesorParaMostrar.apellido}} {{profesorParaMostrar.nombre}}" disabled>
