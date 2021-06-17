@@ -14,7 +14,8 @@ export class User {
     nombre?: string;
     apellido?: string;
     imgPerfil?: File;
-    vigente?: boolean;
+    disponible?: boolean;
+    fechaBorrado?: Date;
 
     constructor(){
         

@@ -1,17 +1,20 @@
 <div *ngIf="materiaParaAsignar && mostrar">
     <h4 class="d-flex justify-content-between  align-items-center mb-3">
         <span class="text-muted">Alumnos:  </span>
-        <small class="text-muted" >{{cantidadAlumnos}}</small>
+        <!-- <small class="text-muted" >{{cantidadAlumnos}}</small> -->
     </h4>      
-    <ul class="list-group mb-3 card-body overflow-auto" style="height: 200px;" #scrollMe  [scrollTop]="scrollMe">
-        <li type="button" class="list-group-item d-flex justify-content-between lh-condensed elegido" *ngFor="let alumno of listadoAlumnos" (click)="asignarAlumno(alumno)">
-            <div >
-                <h6 class="my-0">{{alumno.apellido}}</h6>
-                <small class="text-muted">{{alumno.nombre}}</small>
-            </div>
-            <img src="{{alumno.imgPerfil}}" class="imgPerfil">
-            
-        </li>
+    <ul class="list-group mb-3 card-body overflow-auto" style="height: 300px;" #scrollMe  [scrollTop]="scrollMe">
+        <div *ngFor="let alumno of listadoAlumnos">
+            <li type="button" class="list-group-item d-flex justify-content-between lh-condensed elegido"  *ngIf="alumno.disponible" >
+                <div  style="width: 100%;" (click)="asignarAlumno(alumno)">
+                    <h6 class="my-0">{{alumno.apellido}}</h6>
+                    <small class="text-muted">{{alumno.nombre}}</small>
+                    <img src="{{alumno.imgPerfil}}" class="imgPerfil">
+                </div>
+                
+                
+            </li>
+        </div>
     </ul>
     <div *ngIf=cupoAlcanzado style="color: red;">
         Cupo de la materia LLENO!

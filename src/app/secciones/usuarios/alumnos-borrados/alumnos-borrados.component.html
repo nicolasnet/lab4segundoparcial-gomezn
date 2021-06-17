@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+
+<div >
+    <button mat-stroked-button color="primary"  (click)="Navegar('secciones/usuarios')">
+      Volver
+    </button>
+  </div>
+  <h2 class="text-center">Listado de alumnos borrados</h2>
+  Descargar: 
+  <button mat-button color="primary" (click)="exporter.exportTable('csv', {fileName: 'Lista de Usuarios'})">CSV</button>
+  <button mat-button color="accent" (click)="exporter.exportTable('txt', {fileName: 'Lista de Usuarios'})">TXT</button>
+  <div class="mat-elevation-z8" >
+
+    <mat-form-field >
+      <mat-label>Filtro</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo Gomez" #input>
+    </mat-form-field>
+
+    <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" matSort>
+
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let row" [appColorSituacionAlumno]="row"> {{row.nombre}} </td>
+        </ng-container>
+            
+        <ng-container matColumnDef="imagen">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
+            <td mat-cell *matCellDef="let row" > <img [src]="row.imagen" > </td>
+        </ng-container>  
+        
+        <ng-container matColumnDef="apellido">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
+            <td mat-cell *matCellDef="let row" [appColorSituacionAlumno]="row"> {{row.apellido}} </td>
+        </ng-container>  
+        
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
+            <td mat-cell *matCellDef="let row" [appColorSituacionAlumno]="row"> {{row.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de borrado</th>
+            <td mat-cell *matCellDef="let row" [appColorSituacionAlumno]="row"> {{row.fechaBorrado.toMillis() | date:'dd/MM/yyyy hh:mm a' }} </td>
+        </ng-container>
+                
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+        
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No se encuentran coincidencias con: "{{input.value}}"</td>
+        </tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>

@@ -1,5 +1,6 @@
 import { Component,Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Materia } from 'src/app/clases/materia';
 import { FileFirestoreService } from 'src/app/services/file-firestore.service';
 import { MateriasFirebaseService } from 'src/app/services/materias-firebase.service';
@@ -17,7 +18,7 @@ export class AltaMateriaComponent implements OnInit {
   listaActores: any;
   imgPerfil: any;
 
-  constructor(private fb: FormBuilder, private materiaService: MateriasFirebaseService, private firebaseStorage: FileFirestoreService) {
+  constructor(private fb: FormBuilder, private materiaService: MateriasFirebaseService, private firebaseStorage: FileFirestoreService, private navegador: Router) {
     // this.materiaService.getAll().subscribe(actores =>{
       
     //   this.listaActores=actores;
@@ -47,7 +48,8 @@ export class AltaMateriaComponent implements OnInit {
     materiaNueva.id = materiaNueva.nombre + materiaNueva.year + materiaNueva.cuatrimestre;
     this.subirArchivos(materiaNueva);
     
-    this.materiaService.create(materiaNueva);    
+    this.materiaService.create(materiaNueva);
+    this.navegador.navigate(['']) 
   }
 
   toTitleCase(str) {

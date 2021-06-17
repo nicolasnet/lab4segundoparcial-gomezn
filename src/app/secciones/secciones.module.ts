@@ -18,6 +18,9 @@ import { MateriaDetalleComponent } from './materia/materia-detalle/materia-detal
 import { MisMateriasComponent } from './mis-materias/mis-materias.component';
 import { PageMateriasProfeComponent } from './profesor/page-materias-profe/page-materias-profe.component';
 import { CalificarAlumnoComponent } from './profesor/calificar-alumno/calificar-alumno.component';
+import { ColorCupoAlumnosDirective } from '../directivas/color-cupo-alumnos.directive';
+import { ColorSituacionAlumnoDirective } from '../directivas/color-situacion-alumno.directive';
+import { AlumnosBorradosComponent } from './usuarios/alumnos-borrados/alumnos-borrados.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { CalificarAlumnoComponent } from './profesor/calificar-alumno/calificar-
     MisMateriasComponent,
     NotaTextoPipe,
     PageMateriasProfeComponent,
-    CalificarAlumnoComponent
+    CalificarAlumnoComponent,
+    ColorCupoAlumnosDirective,
+    ColorSituacionAlumnoDirective,
+    AlumnosBorradosComponent
   ],
   imports: [
     CommonModule,

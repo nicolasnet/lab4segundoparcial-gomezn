@@ -4,12 +4,12 @@
         <small class="text-muted" *ngIf="mostrar">{{cantidadMaterias}}</small>
     </h4>
     <div *ngIf="mostrar">    
-        <ul class="list-group mb-3 card-body overflow-auto" style="height: 200px;" #scrollMe  [scrollTop]="scrollMe">
-            <li type="button" class="list-group-item d-flex justify-content-between lh-condensed elegido" *ngFor="let materia of listadoMaterias" (click)="seleccionMateria(materia)">
+        <ul class="list-group mb-3 card-body overflow-auto" style="height: 300px;" #scrollMe  [scrollTop]="scrollMe">
+            <li type="button" class="list-group-item d-flex justify-content-between lh-condensed elegido" [appColorCupoAlumnos]="materia.cupoAlumnos" *ngFor="let materia of listadoMaterias" (click)="seleccionMateria(materia)">
                 <div >
                     <h6 class="my-0">{{materia.nombre}}</h6>
                     <h6>Profesor/a: {{materia.profesor.apellido}}  {{materia.profesor.nombre}}</h6>
-                    <small class="text-muted">Año: {{materia.year}}</small><small class="text-muted">  Cuatrimestre: {{materia.cuatrimestre}}</small><small class="text-muted">  Cupo Total: {{materia.cupoAlumnos}}</small>
+                    <small class="text-muted">Año: {{materia.year}}</small><small class="text-muted">  Cuatrimestre: {{materia.cuatrimestre}}</small><small >  Cupo Total: {{materia.cupoAlumnos}}</small>
                 </div>
                 
             </li>
@@ -26,16 +26,12 @@
 </div>
 
 <div *ngIf="role == 'profesor'">
-
-    <ul class="list-group mb-3 card-body overflow-auto" style="height: 200px;" #scrollMe  [scrollTop]="scrollMe">
-        <li type="button" class="list-group-item d-flex justify-content-between lh-condensed elegido" *ngFor="let materia of listadoMateriasProfe" (click)="seleccionMateria(materia)">
+    <ul class="list-group mb-3 card-body overflow-auto" style="height: 300px;" #scrollMe  [scrollTop]="scrollMe">
+        <li type="button"  class="list-group-item d-flex justify-content-between lh-condensed elegido" [appColorCupoAlumnos]="materia.cupoAlumnos" *ngFor="let materia of listadoMateriasProfe" (click)="seleccionMateria(materia)">
             <div >
                 <h6 class="my-0">{{materia.nombre}}</h6>
-                <!-- <h6>Profesor/a: {{materia.profesor.apellido}}  {{materia.profesor.nombre}}</h6> -->
-                <small class="text-muted">Año: {{materia.year}}</small><small class="text-muted">  Cuatrimestre: {{materia.cuatrimestre}}</small><small class="text-muted">  Cupo Total: {{materia.cupoAlumnos}}</small>
-            </div>
-            
+                <small class="text-muted">Año: {{materia.year}}</small><small class="text-muted">  Cuatrimestre: {{materia.cuatrimestre}}</small><small >  Cupo Total: {{materia.cupoAlumnos}}</small>
+            </div>            
         </li>
     </ul>
-
 </div>

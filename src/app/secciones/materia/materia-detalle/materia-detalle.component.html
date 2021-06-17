@@ -9,7 +9,7 @@
         <div *ngIf="materiaParaAsignar.listadoAlumnos && role == 'profesor'">
             Alumnos Anotados:
             <ul class="list-group mb-3 card-body overflow-auto" style="height: 300px;" #scrollMe  [scrollTop]="scrollMe">
-                <li type="button" class="list-group-item d-flex justify-content-between lh-condensed elegido" *ngFor="let alumno of materiaParaAsignar.listadoAlumnos" (click)="SeleccionarAlumno(alumno)">
+                <li type="button" class="list-group-item d-flex justify-content-between lh-condensed elegido" *ngFor="let alumno of alumnosHabilitados" (click)="SeleccionarAlumno(alumno)">
                     <div >
                         <h6 class="my-0">Apellido: {{alumno.apellido}}</h6>
                         <small class="text-muted">Nombre: {{alumno.nombre}}</small>

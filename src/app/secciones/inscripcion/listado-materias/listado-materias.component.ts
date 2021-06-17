@@ -27,10 +27,10 @@ export class ListadoMateriasComponent implements OnInit {
 
       if(this.role == "profesor"){
         this.email = localStorage.getItem('usuario');
-        // this.obtenerUsuarioLogueado();
+        this.listadoMateriasProfe = new Array<Materia>();
         for (let index = 0; index < this.listadoMaterias.length; index++) {
           if(this.listadoMaterias[index].profesor.email == this.email ){
-            this.listadoMateriasProfe = new Array<Materia>();
+            
             this.listadoMateriasProfe.push(this.listadoMaterias[index]);            
           }          
         }

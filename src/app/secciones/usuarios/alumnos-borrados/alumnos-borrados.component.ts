@@ -7,13 +7,13 @@ import { User } from 'src/app/clases/user';
 import { UsuariosFirebaseService } from 'src/app/services/usuarios-firebase.service';
 
 @Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css']
+  selector: 'app-alumnos-borrados',
+  templateUrl: './alumnos-borrados.component.html',
+  styleUrls: ['./alumnos-borrados.component.css']
 })
-export class UsuariosComponent implements AfterViewInit  {
+export class AlumnosBorradosComponent implements OnInit {
 
-  displayedColumns: string[] = ['nombre', 'apellido', 'email','tipo', 'habilitar'];
+  displayedColumns: string[] = ['imagen', 'nombre', 'apellido', 'email','fecha'];
   public dataSource: MatTableDataSource<any>
   listaUsuarios:any;  
 
@@ -22,7 +22,7 @@ export class UsuariosComponent implements AfterViewInit  {
 
   constructor(private usuariosService: UsuariosFirebaseService, private router: Router ) {
     
-    this.usuariosService.getAll().subscribe(listado =>{
+    this.usuariosService.getAllAlumnosBorrados().subscribe(listado =>{
         
       this.listaUsuarios=listado;
       // console.info(this.listaUsuarios);
@@ -33,8 +33,7 @@ export class UsuariosComponent implements AfterViewInit  {
     // Assign the data to the data source for the table to render
     
   }
-
-  ngAfterViewInit() {
+  ngOnInit(){
     
   }
 
@@ -64,6 +63,5 @@ export class UsuariosComponent implements AfterViewInit  {
     this.router.navigate([ruta]);
 
   }
-
 
 }

@@ -20,6 +20,7 @@ export class MateriaDetalleComponent implements OnInit, OnChanges {
   mostrar : boolean = true;
   inscripto : boolean = false;
   public role: string = localStorage.getItem('role');
+  alumnosHabilitados = new Array<User>();
 
   constructor(private materiasServ: MateriasFirebaseService, private usuarioService: UsuariosFirebaseService) {
     this.email = localStorage.getItem('usuario');
@@ -34,7 +35,27 @@ export class MateriaDetalleComponent implements OnInit, OnChanges {
   ngOnChanges(){
     if(this.materiaParaAsignar){
       if(this.materiaParaAsignar.listadoAlumnos){
-        this.cupoRestante = this.materiaParaAsignar.cupoAlumnos - this.materiaParaAsignar.listadoAlumnos.length;
+        let listadoAlumnosBorrados;
+        this.usuarioService.getAllAlumnosBorrados().subscribe(listado =>{        
+          listadoAlumnosBorrados=listado;
+          for (let index = 0; index < this.materiaParaAsignar.listadoAlumnos.length; index++) {
+            let flagBorrado = false;
+            for (let i = 0; i < listadoAlumnosBorrados.length; i++) {
+              
+              if(this.materiaParaAsignar.listadoAlumnos[index].email == listadoAlumnosBorrados[i].email){
+                console.log("Entro en coincidencia con usuario borrado: " + this.materiaParaAsignar.listadoAlumnos[index].email)
+                flagBorrado = true;
+              }
+              
+            }
+            if(!flagBorrado){
+              this.alumnosHabilitados.push(this.materiaParaAsignar.listadoAlumnos[index])
+            }            
+          }
+          this.cupoRestante = this.materiaParaAsignar.cupoAlumnos - this.alumnosHabilitados.length;
+        });
+        
+        
       }else{
         this.cupoRestante = this.materiaParaAsignar.cupoAlumnos
       }      
@@ -49,17 +70,17 @@ export class MateriaDetalleComponent implements OnInit, OnChanges {
 
   async ConfirmarInscripcion(){
     await this.materiasServ.obtenerID(this.materiaParaAsignar.id);
-    if(this.materiaParaAsignar.listadoAlumnos){
-      if(this.materiaParaAsignar.listadoAlumnos.length < this.materiaParaAsignar.cupoAlumnos){
-        for (let index = 0; index < this.materiaParaAsignar.listadoAlumnos.length; index++) {
-          if(this.materiaParaAsignar.listadoAlumnos[index].email == this.usuario.email){
+    if(this.alumnosHabilitados){
+      if(this.alumnosHabilitados.length < this.materiaParaAsignar.cupoAlumnos){
+        for (let index = 0; index < this.alumnosHabilitados.length; index++) {
+          if(this.alumnosHabilitados[index].email == this.usuario.email){
             this.inscripto = true;
             break;
           }                  
         }
         if(!this.inscripto){
-          this.materiaParaAsignar.listadoAlumnos.push(this.usuario);        
-          this.materiasServ.update(this.materiasServ.idMateriaSeleccionada, {listadoAlumnos: this.materiaParaAsignar.listadoAlumnos});
+          this.alumnosHabilitados.push(this.usuario);        
+          this.materiasServ.update(this.materiasServ.idMateriaSeleccionada, {listadoAlumnos: this.alumnosHabilitados});
           this.mostrar = false;  
         }
         
@@ -76,6 +97,7 @@ export class MateriaDetalleComponent implements OnInit, OnChanges {
       this.mostrar = false;
     }
   }
+
 
   SeleccionarAlumno(alumno: User){
     this.eventAlumnoSeleccionado.emit(alumno);
