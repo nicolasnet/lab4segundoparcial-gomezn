@@ -41,4 +41,47 @@ export class AprobacionNODirectaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnChanges(){
+    if(this.materiaParaAsignar){
+      this.listadoCalificacionesDelALumno = new Array<Calificacion>();
+      for (let index = 0; index < this.listadoCalificaciones.length; index++) {        
+        if(this.listadoCalificaciones[index].nota < 7 ){
+          if(this.listadoCalificaciones[index].materia.id == this.materiaParaAsignar.id){
+            this.listadoCalificacionesDelALumno.push(this.listadoCalificaciones[index]);
+          }
+                   
+          
+        }
+        
+      }
+      this.cantidadCalificaciones = this.listadoCalificacionesDelALumno.length;
+
+      // if(this.materiaParaAsignar.listadoAlumnos){
+      //   let listadoAlumnosBorrados;
+      //   this.usuarioService.getAllAlumnosBorrados().subscribe(listado =>{        
+      //     listadoAlumnosBorrados=listado;
+      //     for (let index = 0; index < this.materiaParaAsignar.listadoAlumnos.length; index++) {
+      //       let flagBorrado = false;
+      //       for (let i = 0; i < listadoAlumnosBorrados.length; i++) {
+              
+      //         if(this.materiaParaAsignar.listadoAlumnos[index].email == listadoAlumnosBorrados[i].email){
+      //           console.log("Entro en coincidencia con usuario borrado: " + this.materiaParaAsignar.listadoAlumnos[index].email)
+      //           flagBorrado = true;
+      //         }
+              
+      //       }
+      //       if(!flagBorrado){
+      //         this.alumnosHabilitados.push(this.materiaParaAsignar.listadoAlumnos[index])
+      //       }            
+      //     }
+      //     this.cupoRestante = this.materiaParaAsignar.cupoAlumnos - this.alumnosHabilitados.length;
+      //   });
+        
+        
+      // }else{
+      //   this.cupoRestante = this.materiaParaAsignar.cupoAlumnos
+      // }      
+    }    
+  }
+
 }
