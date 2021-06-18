@@ -34,6 +34,7 @@ export class MateriaDetalleComponent implements OnInit, OnChanges {
 
   ngOnChanges(){
     if(this.materiaParaAsignar){
+      this.alumnosHabilitados = new Array<User>();
       if(this.materiaParaAsignar.listadoAlumnos){
         let listadoAlumnosBorrados;
         this.usuarioService.getAllAlumnosBorrados().subscribe(listado =>{        
