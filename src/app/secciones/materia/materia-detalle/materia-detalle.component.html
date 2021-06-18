@@ -6,7 +6,7 @@
         <small class="text-muted">Año: {{materiaParaAsignar.year}}</small><small class="text-muted">  Cuatrimestre: {{materiaParaAsignar.cuatrimestre}}</small><small class="text-muted">  Cupo Restante: {{cupoRestante}}</small>
         <br>
         <button *ngIf="role == 'alumno'" mat-stroked-button color="primary" (click)="ConfirmarInscripcion()">Confirmar Inscripcion</button>
-        <div *ngIf="materiaParaAsignar.listadoAlumnos && role == 'profesor'">
+        <div *ngIf="materiaParaAsignar.listadoAlumnos != '' && role == 'profesor'">
             Alumnos Anotados:
             <ul class="list-group mb-3 card-body overflow-auto" style="height: 300px;" #scrollMe  [scrollTop]="scrollMe">
                 <li type="button" class="list-group-item d-flex justify-content-between lh-condensed elegido" *ngFor="let alumno of alumnosHabilitados" (click)="SeleccionarAlumno(alumno)">

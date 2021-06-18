@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   mostrarError = false;
   usuarioLogueado;
   error: string;
+  user: any;
 
 
   constructor(public firebaseService: AuthFirebaseService, private router: Router, private usuariosFire: UsuariosFirebaseService) { 
@@ -33,8 +34,8 @@ export class LoginComponent implements OnInit {
   
   async OnSignIn(email:string, password: string){
     try {
-      const user = await this.firebaseService.SignIn(email,password);
-      this.checkUserIsVerified(user);
+      this.user = await this.firebaseService.SignIn(email,password);
+      this.checkUserIsVerified(this.user);
       localStorage.setItem('usuario', email);
     } catch (error) {
       
@@ -43,13 +44,20 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  private async checkUserIsVerified(user: User) {
+  private async checkUserIsVerified(user: any) {
   if (user) {
     await this.usuariosFire.obtenerUsuario(user.email);
     this.usuarioLogueado = this.usuariosFire.usuarioSeleccionado;
-    localStorage.setItem('role', this.usuarioLogueado.role);
-    console.log("LOGIN: el Role que loguea es: "+this.usuarioLogueado.role);
-    this.router.navigate(['/']);
+    if(this.usuarioLogueado.disponible && !this.usuarioLogueado.disponible){
+      console.log("entra en usuario no disponible");
+      this.router.navigate(['usuarioborrado']);
+
+    }else{
+      localStorage.setItem('role', this.usuarioLogueado.role);
+      console.log("LOGIN: el Role que loguea es: "+this.usuarioLogueado.role);
+      this.router.navigate(['/']);
+    }
+    
   }else {
     this.mostrarError = true;
   }
@@ -101,12 +109,16 @@ export class LoginComponent implements OnInit {
         this.contraIngreso = "123456";
         break;
       case "especialista1":
-        this.emailIngreso= "micaela.comelli25@gmail.com";
-        this.contraIngreso = "123456";
+        this.emailIngreso= "octavio@gmail.com";
+        this.contraIngreso = "octavio";
         break;
       case "especialista2":
-        this.emailIngreso= "profe1@prueba.com";
-        this.contraIngreso = "123456";
+        this.emailIngreso= "matias@gmail.com";
+        this.contraIngreso = "matias";
+        break;
+      case "especialista3":
+        this.emailIngreso= "maxi@gmail.com";
+        this.contraIngreso = "maxi01";
         break;
     }
     

@@ -21,6 +21,13 @@ import { CalificarAlumnoComponent } from './profesor/calificar-alumno/calificar-
 import { ColorCupoAlumnosDirective } from '../directivas/color-cupo-alumnos.directive';
 import { ColorSituacionAlumnoDirective } from '../directivas/color-situacion-alumno.directive';
 import { AlumnosBorradosComponent } from './usuarios/alumnos-borrados/alumnos-borrados.component';
+import { MisCalificacionesComponent } from './mis-materias/mis-calificaciones/mis-calificaciones.component';
+import { PageExamenesComponent } from './profesor/examenes/page-examenes/page-examenes.component';
+import { DatosExamenesComponent } from './profesor/examenes/datos-examenes/datos-examenes.component';
+import { ActasExamenesComponent } from './profesor/page-actas-examenes/actas-examenes/actas-examenes.component';
+import { PageActasExamenesComponent } from './profesor/page-actas-examenes/page-actas-examenes.component';
+import { AprobacionDirectaComponent } from './profesor/page-actas-examenes/aprobacion-directa/aprobacion-directa.component';
+import { AprobacionNODirectaComponent } from './profesor/page-actas-examenes/aprobacion-nodirecta/aprobacion-nodirecta.component';
 
 
 @NgModule({
@@ -40,7 +47,14 @@ import { AlumnosBorradosComponent } from './usuarios/alumnos-borrados/alumnos-bo
     CalificarAlumnoComponent,
     ColorCupoAlumnosDirective,
     ColorSituacionAlumnoDirective,
-    AlumnosBorradosComponent
+    AlumnosBorradosComponent,
+    MisCalificacionesComponent,
+    PageExamenesComponent,
+    DatosExamenesComponent,
+    ActasExamenesComponent,
+    PageActasExamenesComponent,
+    AprobacionDirectaComponent,
+    AprobacionNODirectaComponent
   ],
   imports: [
     CommonModule,

@@ -18,3 +18,8 @@
       <button mat-raised-button color="accent" class="w-100" type="submit" [disabled]="forma.invalid">Calificar</button>   
     </form>
 </div>
+<div *ngIf="!mostrar" style="color: greenyellow;">
+  Calificacion exitosa
+</div>
+
+<button mat-raised-button color="warn" class="w-100" (click)="FinalizarExamen()" *ngIf="hayCalificacion">Finalizar Examen</button>

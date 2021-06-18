@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<div class="container py-4">
+    <header class="pb-3 mb-4 border-bottom">
+      <a class="d-flex align-items-center text-dark text-decoration-none">        
+        <span class="fs-4">Elegir Materia y luego ver listados</span>
+      </a>
+    </header>  
+
+    <div class="row align-items-md-stretch">
+      <div class="col-md-4">
+        <app-listado-materias (eventMateriaSeleccionado)=CargarMateriaElegida($event)></app-listado-materias>
+      </div>
+
+      <div class="col-md-4">          
+        <!-- <app-materia-detalle [materiaParaAsignar]="materiaSeleccionada" (eventAlumnoSeleccionado)=CargarAlumnoElegido($event)></app-materia-detalle> -->
+        <app-aprobacion-directa [materiaParaAsignar]="materiaSeleccionada"></app-aprobacion-directa>
+        
+      </div>
+
+      <div class="col-md-4">          
+        <!-- <app-calificar-alumno [alumnoParaAsignar]="alumnoSeleccionado" [materiaParaAsignar]="materiaSeleccionada" [examenCreado]="examenIniciado"></app-calificar-alumno> -->
+        <app-aprobacion-nodirecta [materiaParaAsignar]="materiaSeleccionada"></app-aprobacion-nodirecta> 
+      </div>
+    </div>
+
+  </div>

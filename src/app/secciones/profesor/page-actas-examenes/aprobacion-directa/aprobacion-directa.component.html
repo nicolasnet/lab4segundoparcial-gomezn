@@ -1,0 +1,22 @@
+<div class="container" *ngIf="materiaParaAsignar">
+    <h4 class="d-flex justify-content-between  align-items-center mb-3">
+        
+    </h4>
+    <small class="text-muted" > Cantidad: {{cantidadCalificaciones}}</small>
+    <div >    
+        <ul class="list-group mb-3 card-body overflow-auto" style="height: 400px; width: 70%;" #scrollMe  [scrollTop]="scrollMe">
+            <li type="button" class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let calificacion of listadoCalificacionesDelALumno" (click)="seleccionMateria(materia)">
+                <div >
+                    <h6 class="my-0">{{calificacion.materia.nombre}}</h6>
+                    <h6>Profesor/a: {{calificacion.materia.profesor.apellido}}  {{calificacion.materia.profesor.nombre}}</h6>
+                    <small class="text-muted">Año: {{calificacion.materia.year}}</small><small class="text-muted">  Cuatrimestre: {{calificacion.materia.cuatrimestre}}</small>
+                </div>
+                <div>
+                    <strong class="text-muted"> Nota Final: {{calificacion.nota}}</strong>
+                    <br>
+                    <strong class="text-muted"> Estado: {{calificacion.nota | notaTexto}}</strong>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

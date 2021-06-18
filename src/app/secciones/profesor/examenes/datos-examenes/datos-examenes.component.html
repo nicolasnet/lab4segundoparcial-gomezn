@@ -1,0 +1,41 @@
+<div class="container" *ngIf="mostrar">
+    <main>
+      <div class="row-center text-center">
+        <p class="text-muted">Elegir Especialidad y establecer días, horarios y duración de los turnos</p>
+          <div >
+            <div class="text-center">
+              <p class="text-muted">(Todos los campos son obligatorios)</p>
+            </div>
+              <form class="needs-validation" [formGroup]="forma" (ngSubmit)="CrearExamen()">          
+  
+                      <div class="row g-3">                     
+                        
+                        <div class="col-sm-6" >
+                          <mat-form-field appearance="outline">
+                            <mat-label>Tipo de examen</mat-label>
+                            <mat-select id="tipo" formControlName="tipo" >
+                              <mat-option *ngFor="let tipo of listadoTipos" [value]="tipo">{{tipo}}</mat-option>
+                            </mat-select>
+                            <mat-error class="invalid" *ngIf="forma.get('tipo').errors?.required && forma.get('tipo').touched">El tipo es requerido</mat-error>
+                          </mat-form-field>                        
+                        </div> 
+
+                        <div class="col-sm-6">
+                            <mat-form-field appearance="outline">
+                              <mat-label>Fecha</mat-label>
+                              <input type="date" matInput placeholder="fecha" formControlName="fecha">
+                              <mat-error class="invalid" *ngIf="forma.get('fecha').errors?.required && forma.get('fecha').touched">La fecha es requerida</mat-error>
+                            </mat-form-field>                    
+                        </div>
+  
+                      </div>
+                      
+                  <hr class="my-4">
+                
+                  <button mat-raised-button color="primary" class="w-100" type="submit" [disabled]="forma.invalid">Cargar datos principales</button>
+                  <!-- <p class="textoOk" *ngIf="correcto">Disponibilidad Horaria enviada con exito</p>              -->
+              </form>
+          </div>
+      </div>
+    </main>
+  </div>

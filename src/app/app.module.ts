@@ -15,6 +15,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SharedModule } from './shared/shared.module';
+import { UsuarioBorradoComponent } from './pages/basic/usuario-borrado/usuario-borrado.component';
 
 
 
@@ -24,7 +25,8 @@ import { SharedModule } from './shared/shared.module';
     ErrorComponent,
     BienvenidoComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    UsuarioBorradoComponent
   ],
   imports: [
     SharedModule,

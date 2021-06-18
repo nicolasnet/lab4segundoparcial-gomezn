@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<button mat-stroked-button color="primary" (click)="Navegar('secciones/mismaterias')">
+    Volver
+</button>
+<div class="container">
+    <h4 class="d-flex justify-content-between  align-items-center mb-3">
+        <span class="text-muted">Mis materias anotadas:  </span>
+        
+    </h4>
+    <small class="text-muted" > Cantidad: {{cantidadMaterias}}</small>
+    <div >    
+        <ul class="list-group mb-3 card-body overflow-auto" style="height: 400px;" #scrollMe  [scrollTop]="scrollMe">
+            <li type="button" class="list-group-item d-flex justify-content-between lh-condensed elegido" *ngFor="let materia of listadoMateriasDelALumno" (click)="seleccionMateria(materia)">
+                <div >
+                    <h6 class="my-0">{{materia.nombre}}</h6>
+                    <h6>Profesor/a: {{materia.profesor.apellido}}  {{materia.profesor.nombre}}</h6>
+                    <small class="text-muted">Año: {{materia.year}}</small><small class="text-muted">  Cuatrimestre: {{materia.cuatrimestre}}</small><small class="text-muted">  Cupo Total: {{materia.cupoAlumnos}}</small>
+                </div>      
+            </li>
+        </ul>
+    </div>
+</div>
